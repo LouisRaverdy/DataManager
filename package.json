@@ -1,0 +1,14 @@
+{
+    "name": "datatemplate",
+    "version": "1.0.0",
+    "description": "A app template for managing data.",
+    "scripts": {
+        "start": "electron ."
+    },
+    "main": "main.js",
+    "author": "Louis Raverdy",
+    "license": "MIT",
+    "devDependencies": {
+        "electron": "^18.2.0"
+    }
+}
