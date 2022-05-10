@@ -23,8 +23,8 @@ const createWindow = () => {
     setTimeout(function() {
         win.close()
         const MainWin = new BrowserWindow({
-            width: 700,
-            height: 500,
+            width: 1050,
+            height: 750,
             resizable: true,
             frame: false,
             webPreferences: {
