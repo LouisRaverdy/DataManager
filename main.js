@@ -5,7 +5,7 @@ const createWindow = () => {
     const win = new BrowserWindow({
         width: 300,
         height: 300,
-        resizable: false,
+        resizable: true,
         frame: false,
         webPreferences: {
             preload: path.join(__dirname, 'preload.js')
@@ -14,14 +14,14 @@ const createWindow = () => {
 
     win.loadFile('html/launchScreen.html')
 
-    const server = 'data-manager-ppks-rlgaw9e4t-louisraverdy.vercel.app'
+    const server = 'test-p8rd2kkog-louisraverdy.vercel.app'
     const url = `${server}/update/${process.platform}/${app.getVersion()}`
 
     autoUpdater.setFeedURL({ url })
     autoUpdater.checkForUpdates()
 
     setTimeout(function() {
-        win.close()
+        //win.close()
         const MainWin = new BrowserWindow({
             width: 1050,
             height: 750,
@@ -59,4 +59,9 @@ autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
     dialog.showMessageBox(dialogOpts).then((returnValue) => {
         if (returnValue.response === 0) autoUpdater.quitAndInstall()
     })
+})
+
+autoUpdater.on('error', message => {
+    console.error('There was a problem updating the application')
+    console.error(message)
 })

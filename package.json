@@ -4,7 +4,7 @@
     "description": "A app template for managing data.",
     "scripts": {
         "start": "electron .",
-        "package": "npm exec electron-packager \"C:\\Users\\Louis Raverdy\\Desktop\\DataTemplate\" DataManager --platform=win32 --arch=x64"
+        "package": "npm exec electron-packager \"C:\\Users\\Louis Raverdy\\Desktop\\DataTemplate\" DataManager --platform=win32 --arch=x64 --overwrite"
     },
     "main": "main.js",
     "author": "Louis Raverdy",
