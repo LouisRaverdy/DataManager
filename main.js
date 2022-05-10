@@ -14,7 +14,7 @@ const createWindow = () => {
 
     win.loadFile('html/launchScreen.html')
 
-    const server = 'https://github.com/LouisRaverdy/DataManager'
+    const server = 'data-manager-ppks-rlgaw9e4t-louisraverdy.vercel.app'
     const url = `${server}/update/${process.platform}/${app.getVersion()}`
 
     autoUpdater.setFeedURL({ url })
