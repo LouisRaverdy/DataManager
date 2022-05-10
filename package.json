@@ -1,14 +1,16 @@
 {
-    "name": "datatemplate",
+    "name": "DataManager",
     "version": "1.0.0",
     "description": "A app template for managing data.",
     "scripts": {
-        "start": "electron ."
+        "start": "electron .",
+        "package": "npm exec electron-packager \"C:\\Users\\Louis Raverdy\\Desktop\\DataTemplate\" DataManager --platform=win32 --arch=x64"
     },
     "main": "main.js",
     "author": "Louis Raverdy",
     "license": "MIT",
     "devDependencies": {
-        "electron": "^18.2.0"
+        "electron": "^18.2.0",
+        "electron-packager": "^15.5.1"
     }
 }
