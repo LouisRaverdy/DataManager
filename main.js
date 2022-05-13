@@ -14,7 +14,7 @@ const createWindow = () => {
 
     win.loadFile('html/launchScreen.html')
 
-    const server = 'test-p8rd2kkog-louisraverdy.vercel.app'
+    const server = 'test-manager-5qqzx9nzk-louisraverdy.vercel.app'
     const url = `${server}/update/${process.platform}/${app.getVersion()}`
 
     autoUpdater.setFeedURL({ url })
