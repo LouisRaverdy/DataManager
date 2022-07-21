@@ -1,6 +1,0 @@
-productName: "DataManager"
-appId: com.louisraverdy.DataManager
-asar: true
-publish:
-  provider: github
-  token: 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
