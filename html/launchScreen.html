@@ -10,6 +10,7 @@
 <body style="border-radius: 5px;overflow:hidden">
     <div class="app-name">Data Manager</div>
     <img class="img-launch-screen" src="../img/LaunchImg.gif" alt="">
+    <div class="dialog-text">Démarrage ...</div>
     <div class="progress">
         <div class="progress-value"></div>
     </div>
@@ -32,6 +33,12 @@
         src: url("../font/Inter-SemiBold.woff2?v=3.19") format("woff2"), url("../font/Inter-SemiBold.woff?v=3.19") format("woff");
     }
     
+    * {
+        margin: 0px 0px 0px 0px;
+        padding: 0px 0px 0px 0px;
+        overflow: hidden;
+    }
+    
     .app-name {
         position: absolute;
         margin-top: 20px;
@@ -43,15 +50,26 @@
     }
     
     .img-launch-screen {
+        position: absolute;
         width: 200px;
-        margin-left: 50%;
-        margin-top: 50%;
+        left: 50%;
+        top: 50%;
         transform: translate(-50%, -50%);
+    }
+    
+    .dialog-text {
+        position: absolute;
+        bottom: 50px;
+        width: 100%;
+        text-align: center;
+        font-family: "Inter";
+        font-weight: 600;
+        font-size: 16px;
     }
     
     .progress {
         background-color: rgb(226, 226, 226);
-        bottom: 10%;
+        bottom: 20px;
         left: 50%;
         transform: translate(-50%, -50%);
         justify-content: flex-start;
@@ -72,15 +90,24 @@
         transition-delay: 250ms;
     }
     
-    .progress-value.full {
+    .progress-value.middle {
         transition: width 3s ease-in-out;
-        width: 100%;
+        width: 50%;
     }
 </style>
 <script>
+    const {
+        ipcRenderer
+    } = require('electron');
+    ipcRenderer.on('message', function(event, text) {
+        document.getElementsByClassName("dialog-text")[0].innerHTML = text;
+        if (text == "Pas de nouvelles mises à jour. Lancement.") {
+            progressBar.classList.add("full");
+        }
+    });
     window.onload = function() {
         var progressBar = document.getElementsByClassName("progress-value")[0]
-        progressBar.classList.add("full");
+        progressBar.classList.add("middle");
     }
 </script>
 

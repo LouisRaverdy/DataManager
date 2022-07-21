@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Data Manager</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+</head>
+<div class="main-page">
+    <div class="login-menu">
+        <div class="title-content">Vous revoila !</div>
+        <div class="container-menu">
+            <input type="email" class="text-field-cell email-login" placeholder="Adresse email">
+            <input type="password" class="text-field-cell password-logins" placeholder="Mot de passe">
+            <button class="login-button" onclick="Login()">Se Connecter</button>
+            <div class="signin">Vous êtes nouveuau ?
+                <button class="switch-to-signin-button" onclick="toSignin()"><u>S'inscrire</u></button>
+            </div>
+        </div>
+    </div>
+    <div class="signin-menu hidden">
+        <div class="title-content-signin">Bienvenue !</div>
+        <div class="container-menu">
+            <input type="nickname" class="text-field-cell prenom-signin" placeholder="Prénom">
+            <input type="name" class="text-field-cell nom-signin" placeholder="Nom">
+            <div class="naissance-div">
+                <div class="text-naissance">Naissanace :</div>
+                <input type="date" class="text-field-cell-naissance">
+            </div>
+            <input type="email" class="text-field-cell email-signin" placeholder="Adresse email">
+            <input type="password" class="text-field-cell password-signin" placeholder="Mot de passe">
+            <input type="password" class="text-field-cell password-signin" placeholder="Confirmer le mot de passe">
+            <button class="signin-button" onclick="Signin()">S'inscrire</button>
+            <div class="login">Déja un compte ?
+                <button class="switch-to-login-button" onclick="toLogin()"><u>Se connecter</u></button>
+            </div>
+        </div>
+    </div>
+    <div class="error">Mot de passe incorrect. (Err. 19191)</div>
+    <div class="app-content">
+        <div class="title-bar">
+            <div class="title-bar-empty"></div>
+            <button class="title-bar-button minimize" id="min-btn"></button>
+            <button class="title-bar-button window" id="max-btn"></button>
+            <button class="title-bar-button close" id="close-btn"></button>
+        </div>
+        <div class="image-login"></div>
+    </div>
+</div>
+
+<style>
+    @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 900;
+        font-display: swap;
+        src: url("../font/Inter-Black.woff2?v=3.19") format("woff2"), url("../font/Inter-Black.woff?v=3.19") format("woff");
+    }
+    
+    @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 800;
+        font-display: swap;
+        src: url("../font/Inter-ExtraBold.woff2?v=3.19") format("woff2"), url("../font/Inter-ExtraBold.woff?v=3.19") format("woff");
+    }
+    
+    @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url("../font/Inter-Bold.woff2?v=3.19") format("woff2"), url("../font/Inter-Bold.woff?v=3.19") format("woff");
+    }
+    
+    @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 600;
+        font-display: swap;
+        src: url("../font/Inter-SemiBold.woff2?v=3.19") format("woff2"), url("../font/Inter-SemiBold.woff?v=3.19") format("woff");
+    }
+    
+    @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url("../font/Inter-Medium.woff2?v=3.19") format("woff2"), url("../font/Inter-Medium.woff?v=3.19") format("woff");
+    }
+    
+    * {
+        margin: 0px 0px 0px 0px;
+        padding: 0px 0px 0px 0px;
+        overflow: hidden;
+    }
+    
+    .main-page {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+    }
+    
+    .login-menu {
+        position: absolute;
+        height: 100vh;
+        width: 430px;
+        background-color: rgba(255, 255, 255, 1);
+        transition: 0.8s;
+        z-index: 1;
+    }
+    
+    .signin-menu {
+        position: absolute;
+        height: 100vh;
+        width: 430px;
+        background-color: rgba(255, 255, 255, 1);
+        transition: 0.8s;
+        z-index: 1;
+    }
+    
+    .hidden {
+        transform: translateX(-100%);
+        z-index: 0 !important;
+    }
+    
+    .title-content {
+        font-family: "Inter";
+        position: relative;
+        font-weight: 820;
+        text-align: center;
+        font-size: 31px;
+        padding-top: 80px;
+    }
+    
+    .title-content-signin {
+        font-family: "Inter";
+        position: relative;
+        font-weight: 820;
+        text-align: center;
+        font-size: 31px;
+        padding-top: 50px;
+    }
+    
+    .container-menu {
+        width: 240px;
+        margin-left: 50%;
+        margin-top: 65%;
+        transform: translate(-50%, -50%);
+    }
+    
+    .login-button {
+        width: 100%;
+        height: 45px;
+        margin-top: 70px;
+        border-radius: 30px;
+        background-color: #52559b;
+        border: 0;
+        color: #121331;
+        font-family: "Inter";
+        font-weight: 500;
+        font-size: 18px;
+        transition: 0.4s;
+        cursor: pointer;
+    }
+    
+    .login-button:hover {
+        background-color: #3c3d6e;
+        color: #f3f3e8;
+    }
+    
+    .signin-button {
+        width: 100%;
+        height: 45px;
+        margin-top: 25px;
+        border-radius: 30px;
+        background-color: #52559b;
+        border: 0;
+        color: #121331;
+        font-family: "Inter";
+        font-weight: 500;
+        font-size: 18px;
+        transition: 0.4s;
+        cursor: pointer;
+    }
+    
+    .signin-button:hover {
+        background-color: #3c3d6e;
+        color: #f3f3e8;
+    }
+    
+    .signin {
+        margin-top: 10px;
+        font-family: "Inter";
+        font-weight: 500;
+        font-size: 15px;
+        color: #3a3a3a;
+    }
+    
+    .login {
+        margin-top: 10px;
+        font-family: "Inter";
+        font-weight: 500;
+        font-size: 15px;
+        color: #3a3a3a;
+    }
+    
+    .switch-to-login-button {
+        background: transparent;
+        border: 0;
+        margin-top: 10px;
+        font-family: "Inter";
+        font-weight: 540;
+        font-size: 15px;
+        cursor: pointer;
+    }
+    
+    .switch-to-signin-button {
+        background: transparent;
+        border: 0;
+        margin-top: 10px;
+        font-family: "Inter";
+        font-weight: 540;
+        font-size: 15px;
+        cursor: pointer;
+    }
+    
+    .text-field-cell {
+        font-family: "Inter";
+        font-weight: 500;
+        font-size: 16px;
+        background-color: transparent;
+        border: 0;
+        border-bottom: 2px solid;
+        margin-top: 10px;
+        margin-bottom: 25px;
+        padding-bottom: 2px;
+        outline: none;
+    }
+    
+    .text-naissance {
+        width: 100px;
+        display: inline-block;
+        vertical-align: text-bottom;
+    }
+    
+    .text-field-cell-naissance {
+        position: relative;
+        font-family: "Inter";
+        font-weight: 500;
+        width: 120px;
+        font-size: 16px;
+        background-color: transparent;
+        border: 0;
+        border-bottom: 2px solid;
+        margin-top: 10px;
+        margin-bottom: 25px;
+        padding-bottom: 2px;
+        outline: none;
+    }
+    
+    .naissance-div {
+        font-family: "Inter";
+        font-weight: 500;
+        width: 100%;
+        font-size: 16px;
+        display: inline-block;
+    }
+    
+    .error {
+        font-family: "Inter";
+        font-weight: 500;
+        width: 400px;
+        color: red;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 20px;
+        backdrop-filter: blur(5px);
+        padding: 20px;
+        position: absolute;
+        top: 20%;
+        left: 60%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        opacity: 0;
+    }
+    
+    .show {
+        transition: 0.7s;
+        opacity: 1;
+        top: 50%;
+    }
+    
+    .dismiss {
+        transition: 0.7s;
+        opacity: 0 !important;
+        top: 80% !important;
+    }
+    
+    .app-content {
+        width: 100%;
+        height: 100%;
+        background-image: url('../img/background_login.gif');
+        background-size: 75%;
+        background-position: center;
+    }
+    
+    .title-bar {
+        height: 30px;
+        width: 100%;
+        display: inline-block;
+    }
+    
+    .title-bar-empty {
+        display: inline-block;
+        height: 30px;
+        width: calc(100% - 105px);
+        -webkit-user-select: none;
+        -webkit-app-region: drag;
+    }
+    
+    .title-bar-button {
+        display: inline-flex;
+        vertical-align: top;
+        margin-right: 8px;
+        margin-top: 6px;
+        width: 22px;
+        height: 22px;
+        border: 0;
+        background-size: contain;
+        background-color: transparent;
+        cursor: pointer;
+    }
+    
+    .minimize {
+        background-image: url("../img/minus.png");
+        background-size: 70% 55%;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    
+    .window {
+        background-image: url("../img/restore.png");
+    }
+    
+    .close {
+        background-image: url("../img/close.png");
+        background-size: 80%;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+</style>
+<script>
+    const electron = require("electron");
+    const ipc = require('electron').ipcRenderer;
+
+    document.getElementById("min-btn").addEventListener("click", function(e) {
+        ipc.send("minimize-window");
+    });
+
+    document.getElementById("max-btn").addEventListener("click", function(e) {
+        ipc.send("toggle-maximize-window");
+    });
+
+    document.getElementById("close-btn").addEventListener("click", function(e) {
+        ipc.send("close-window");
+    });
+
+    function toSignin() {
+        divLogIn = document.getElementsByClassName("login-menu")[0]
+        divLogIn.classList.add("hidden");
+
+
+        setTimeout(function() {
+            divSignin = document.getElementsByClassName("signin-menu")[0]
+            divSignin.classList.remove("hidden");
+        }, 500);
+    }
+
+    function toLogin() {
+        divSignin = document.getElementsByClassName("signin-menu")[0]
+        divSignin.classList.add("hidden");
+
+        setTimeout(function() {
+            divLogIn = document.getElementsByClassName("login-menu")[0]
+            divLogIn.classList.remove("hidden");
+        }, 700);
+    }
+
+    function Login() {
+        inAnim = false
+
+        email = document.getElementsByClassName("email-login")[0].value
+        password = document.getElementsByClassName("password-login")[0].value
+        data = [email, password]
+
+        reply = ipc.sendSync('Login', data);
+        replyData = JSON.parse(reply);
+
+        if (!replyData.success) {
+            if (!inAnim) {
+                inAnim = true
+
+                divError = document.getElementsByClassName("error")[0]
+                divError.innerHTML = `${replyData.errMessage} (Err. ${replyData.errCode})`
+                divError.classList.add("show");
+                setTimeout(function() {
+                    divError.classList.remove("show");
+                    divError.classList.add("dismiss");
+                    setTimeout(function() {
+                        divError.classList.remove("dismiss");
+                        inAnim = false
+                    }, 800);
+                }, 4000);
+            }
+        }
+    }
+
+    function Signin() {
+        inAnim = false
+
+        prenom = document.getElementsByClassName("prenom-signin")[0].value
+        nom = document.getElementsByClassName("nom-signin")[0].value
+        date = document.getElementsByClassName("date-signin")[0].value
+        email = document.getElementsByClassName("email-signin")[0].value
+        password = document.getElementsByClassName("password-signin")[0].value
+        data = [prenom, nom, date, email, password]
+
+        reply = ipc.sendSync('Signin', data);
+        replyData = JSON.parse(reply);
+
+        if (!replyData.success) {
+            if (!inAnim) {
+                inAnim = true
+
+                divError = document.getElementsByClassName("error")[0]
+                divError.innerHTML = `${replyData.errMessage} (Err. ${replyData.errCode})`
+                divError.classList.add("show");
+                setTimeout(function() {
+                    divError.classList.remove("show");
+                    divError.classList.add("dismiss");
+                    setTimeout(function() {
+                        divError.classList.remove("dismiss");
+                        inAnim = false
+                    }, 800);
+                }, 4000);
+            }
+        }
+    }
+</script>
+
+</html>

@@ -6,12 +6,60 @@
     <title>Data Manager</title>
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
 </head>
-
-<body style="border-radius: 5px;overflow:hidden">
-    <div class="app-version">v1.0.3</div>
-</body>
+<div class="main-page">
+    <div class="left-menu">
+        <div class="app-name">Data Manager</div>
+        <div class="container-menu">
+            <button class="button-menu button-table">
+                <div class="img-button-menu table"></div>
+                <div class="text-button-menu">Tables des données</div>
+            </button>
+            <button class="button-menu button-manage-table">
+                <div class="img-button-menu manage-table"></div>
+                <div class="text-button-menu">Gerer la table</div>
+            </button>
+            <button class="button-menu button-finder">
+                <div class="img-button-menu finder"></div>
+                <div class="text-button-menu">Finder</div>
+            </button>
+            <button class="button-menu button-add">
+                <div class="img-button-menu add"></div>
+                <div class="text-button-menu">Nouvelle donnée</div>
+            </button>
+            <button class="button-menu button-settings">
+                <div class="img-button-menu settings"></div>
+                <div class="text-button-menu">Paramètres</div>
+            </button>
+        </div>
+    </div>
+    <div class="app-content">
+        <div class="title-bar">
+            <div class="title-bar-empty"></div>
+            <button class="title-bar-button minimize" id="min-btn"></button>
+            <button class="title-bar-button window" id="max-btn"></button>
+            <button class="title-bar-button close" id="close-btn"></button>
+        </div>
+        <iframe src="manage-table.html" class="page-child" allowTransparency="true" scrolling="yes" frameborder="0" width="100%" height="100%"></iframe>
+    </div>
+</div>
 
 <style>
+    @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 900;
+        font-display: swap;
+        src: url("../font/Inter-Black.woff2?v=3.19") format("woff2"), url("../font/Inter-Black.woff?v=3.19") format("woff");
+    }
+    
+    @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 800;
+        font-display: swap;
+        src: url("../font/Inter-ExtraBold.woff2?v=3.19") format("woff2"), url("../font/Inter-ExtraBold.woff?v=3.19") format("woff");
+    }
+    
     @font-face {
         font-family: 'Inter';
         font-style: normal;
@@ -28,16 +76,203 @@
         src: url("../font/Inter-SemiBold.woff2?v=3.19") format("woff2"), url("../font/Inter-SemiBold.woff?v=3.19") format("woff");
     }
     
-    .app-version {
-        position: absolute;
-        bottom: 20px;
-        right: 20px;
+    @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url("../font/Inter-Medium.woff2?v=3.19") format("woff2"), url("../font/Inter-Medium.woff?v=3.19") format("woff");
+    }
+    
+    * {
+        margin: 0px 0px 0px 0px;
+        padding: 0px 0px 0px 0px;
+        overflow: hidden;
+    }
+    
+    .main-page {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+    }
+    
+    .left-menu {
+        height: 100vh;
+        width: 350px;
+        background-color: #e7e7f3;
+    }
+    
+    .app-name {
         font-family: "Inter";
-        font-weight: 600;
+        position: relative;
+        font-weight: 900;
+        font-size: 26px;
+        padding-left: 30px;
+        padding-top: 40px;
+    }
+    
+    .container-menu {
+        width: 240px;
+        margin-left: 50%;
+        margin-top: 70%;
+        transform: translate(-50%, -50%);
+    }
+    
+    .button-menu {
+        width: 100%;
+        height: 45px;
+        margin-top: 20px;
+        border-radius: 30px;
+        background-color: #FFFFFF;
+        border: 0;
+        color: #121331;
+        font-family: "Inter";
+        font-weight: 500;
         font-size: 18px;
+        transition: 0.4s;
+        cursor: pointer;
+    }
+    
+    .button-menu:hover {
+        background-color: #121331;
+        color: #f3f3e8;
+    }
+    
+    .img-button-menu {
+        display: inline-block;
+        width: 45px;
+        height: 100%;
+        background-size: 60%;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    
+    .table {
+        background-image: url("../img/static-table.png");
+    }
+    
+    .button-table:hover>.table {
+        background-image: url("../img/table.gif");
+        filter: invert(1);
+    }
+    
+    .manage-table {
+        background-image: url("../img/static-manage-table.png");
+    }
+    
+    .button-manage-table:hover>.manage-table {
+        background-image: url("../img/manage-table.gif");
+        filter: invert(1);
+    }
+    
+    .finder {
+        background-image: url("../img/static-search.png");
+        transition: 0.4s;
+    }
+    
+    .button-finder:hover>.finder {
+        background-image: url("../img/search.gif");
+        filter: invert(1);
+    }
+    
+    .add {
+        background-image: url("../img/static-add.png");
+    }
+    
+    .button-add:hover>.add {
+        background-image: url("../img/add.gif");
+        filter: invert(1);
+    }
+    
+    .settings {
+        background-image: url("../img/static-settings.png");
+    }
+    
+    .button-settings:hover>.settings {
+        background-image: url("../img/settings.gif");
+        filter: invert(1);
+    }
+    
+    .text-button-menu {
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 12px;
+        width: calc(100% - 51px);
+        text-align: left;
+    }
+    
+    .app-content {
+        width: calc(100% - 300px);
+        height: 100%;
+        background-color: #e7e7f3;
+    }
+    
+    .title-bar {
+        height: 30px;
+        width: 100%;
+        display: inline-block;
+    }
+    
+    .title-bar-empty {
+        display: inline-block;
+        height: 30px;
+        width: calc(100% - 105px);
+        -webkit-user-select: none;
+        -webkit-app-region: drag;
+    }
+    
+    .title-bar-button {
+        display: inline-flex;
+        vertical-align: top;
+        margin-right: 8px;
+        margin-top: 6px;
+        width: 22px;
+        height: 22px;
+        border: 0;
+        background-size: contain;
+        background-color: transparent;
+        cursor: pointer;
+    }
+    
+    .minimize {
+        background-image: url("../img/minus.png");
+        background-size: 70% 55%;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    
+    .window {
+        background-image: url("../img/restore.png");
+    }
+    
+    .close {
+        background-image: url("../img/close.png");
+        background-size: 80%;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    
+    .page-child {
+        width: 100%;
+        height: calc(100vh - 30px) !important;
+        border-radius: 40px 0 0 0;
     }
 </style>
 <script>
+    const electron = require("electron");
+    const ipc = electron.ipcRenderer;
+
+    document.getElementById("min-btn").addEventListener("click", function(e) {
+        ipc.send("minimize-window");
+    });
+
+    document.getElementById("max-btn").addEventListener("click", function(e) {
+        ipc.send("toggle-maximize-window");
+    });
+
+    document.getElementById("close-btn").addEventListener("click", function(e) {
+        ipc.send("close-window");
+    });
 </script>
 
 </html>

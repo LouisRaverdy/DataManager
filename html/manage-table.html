@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Data Manager</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+</head>
+<div class="main-page">
+    <div class="title-page">Format d'une cellule</div>
+    <div class="template-cell">
+        <div class="cell-number">Donnée n°1</div>
+        <div class="delete-cell"></div>
+        <div class="cell-container">
+            <div class="section-cell data-name">
+                <div class="text-cell data-name-title">Nom de la donnée :</div>
+                <input type="text" class="text-field-cell data-name-input">
+            </div>
+            <div class="section-cell value-type">
+                <div class="text-cell type-name-title">Type de la valeur :</div>
+                <select class="select-cell name-name-input"></select>
+            </div>
+            <div class="section-cell value-default">
+                <div class="text-cell value-name-title">Valeur par défaut :</div>
+                <input type="text" class="text-field-cell value-name-input">
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 900;
+        font-display: swap;
+        src: url("../font/Inter-Black.woff2?v=3.19") format("woff2"), url("../font/Inter-Black.woff?v=3.19") format("woff");
+    }
+    
+    @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 800;
+        font-display: swap;
+        src: url("../font/Inter-ExtraBold.woff2?v=3.19") format("woff2"), url("../font/Inter-ExtraBold.woff?v=3.19") format("woff");
+    }
+    
+    @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url("../font/Inter-Bold.woff2?v=3.19") format("woff2"), url("../font/Inter-Bold.woff?v=3.19") format("woff");
+    }
+    
+    @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 600;
+        font-display: swap;
+        src: url("../font/Inter-SemiBold.woff2?v=3.19") format("woff2"), url("../font/Inter-SemiBold.woff?v=3.19") format("woff");
+    }
+    
+    @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url("../font/Inter-Medium.woff2?v=3.19") format("woff2"), url("../font/Inter-Medium.woff?v=3.19") format("woff");
+    }
+    
+    * {
+        margin: 0px 0px 0px 0px;
+        padding: 0px 0px 0px 0px;
+    }
+    
+    .main-page {
+        background-color: white;
+        width: 100%;
+        height: 100vh;
+    }
+    
+    .title-page {
+        font-family: "Inter";
+        position: relative;
+        font-weight: 750;
+        font-size: 26px;
+        margin-left: 20px;
+        margin-right: 40px;
+        margin-bottom: 50px;
+        padding-left: 10px;
+        padding-top: 40px;
+        padding-bottom: 5px;
+        border-bottom: 2px solid;
+    }
+    
+    .template-cell {
+        height: 80px;
+        margin-left: 60px;
+        margin-right: 60px;
+        position: relative;
+    }
+    
+    .cell-number {
+        position: absolute;
+        font-family: "Inter";
+        transform: translateY(-50%);
+        font-weight: 640;
+        font-size: 16px;
+        color: black;
+        background-color: white;
+        padding-top: 2px;
+        padding-left: 10px;
+        padding-right: 10px;
+        border-radius: 14px;
+        height: 25px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+    
+    .delete-cell {
+        position: absolute;
+        right: -10px;
+        top: -10px;
+        height: 40px;
+        width: 40px;
+        border-radius: 20px;
+        background-color: white;
+        background-image: url("../img/static-delete.png");
+        background-size: 70%;
+        background-position: center;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        transition: all .2s ease-in-out;
+    }
+    
+    .delete-cell:hover {
+        background-image: url('../img/delete.gif');
+        transform: scale(1.1);
+    }
+    
+    .section-cell {
+        margin-left: 40px;
+    }
+    
+    .text-cell {
+        position: relative;
+        font-family: "Inter";
+        font-weight: 640;
+        font-size: 16px;
+        margin-top: 25px;
+    }
+    
+    .select-cell {
+        font-family: "Inter";
+        font-weight: 500;
+        font-size: 16px;
+        background-color: transparent;
+        border: 0;
+        border-bottom: 2px solid;
+        margin-top: 10px;
+        margin-bottom: 25px;
+        padding-bottom: 2px;
+        outline: none;
+        width: 210px;
+    }
+    
+    .text-field-cell {
+        font-family: "Inter";
+        font-weight: 500;
+        font-size: 16px;
+        background-color: transparent;
+        border: 0;
+        border-bottom: 2px solid;
+        margin-top: 10px;
+        margin-bottom: 25px;
+        padding-bottom: 2px;
+        outline: none;
+    }
+    
+    .cell-container {
+        background-color: #F0F8FF;
+        border-radius: 20px;
+        width: 100%;
+        height: auto;
+        display: inline-flex;
+    }
+</style>

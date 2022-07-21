@@ -1,16 +1,32 @@
 {
     "name": "DataManager",
-    "version": "1.0.0",
+    "version": "1.2.4",
     "description": "A app template for managing data.",
-    "scripts": {
-        "start": "electron .",
-        "package": "npm exec electron-packager \"C:\\Users\\Louis Raverdy\\Desktop\\DataTemplate\" DataManager --platform=win32 --arch=x64 --overwrite"
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/LouisRaverdy/DataManager.git"
     },
     "main": "main.js",
     "author": "Louis Raverdy",
     "license": "MIT",
     "devDependencies": {
-        "electron": "^18.2.0",
-        "electron-packager": "^15.5.1"
+        "electron": "^18.2.0"
+    },
+    "dependencies": {
+        "firebase": "^9.8.2"
+    },
+    "scripts": {
+        "start": "electron .",
+        "build": "electron-builder build --win --publish never",
+        "deploy": "electron-builder build --win -p always"
+    },
+    "build": {
+        "productName": "Data Manager",
+        "artifactName": "DataManager-${version}-${os}-${arch}.${ext}",
+        "appId": "com.louisraverdy.data-manager",
+        "copyright": "Copyright © 2022 ${author}",
+        "win": {
+            "icon": "build/logo.ico"
+        }
     }
 }
